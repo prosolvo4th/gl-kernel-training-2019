@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+
 using namespace std;
 
 enum
@@ -38,6 +40,7 @@ int main(int argc, char **argv)
 
     cout << "You choose " << pick[userPick] << endl;
 
+    srand(time(0));
     int pcPick = random() % 3;
     cout << "PC choose " << pick[pcPick] << endl;
 
