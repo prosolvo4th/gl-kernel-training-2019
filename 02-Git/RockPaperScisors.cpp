@@ -22,6 +22,9 @@ int main(int argc, char **argv)
 
     cout << "You choose " << pick[userPick] << endl;
 
+    int pcPick = random() % 3;
+    cout << "PC choose " << pick[pcPick] << endl;
+
     return 0;
 }
 
