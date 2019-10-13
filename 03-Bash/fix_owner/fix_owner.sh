@@ -1,4 +1,27 @@
-#!/bin/bash
+#!/bin/bash 
+
+declare -i force
+force=0
+
+function printHelp()
+{
+    echo "$0 - check user\`s"
+    echo "-f, --force - fix without asknowledgement,"
+    echo "-h, --help - print these options."
+    exit 0
+}
+
+# check options
+if [ $# -gt 0 ]; then
+    case $1 in 
+        -h) printHelp;; 
+        --help) printHelp;; 
+        -f) force=1;;
+        --force) force=1;;
+        *) exit 1;;
+    esac
+fi
+
 
 file="/etc/passwd"
 IFS=$'\n'
@@ -32,7 +55,13 @@ do
             echo "the $homeFile does not belong to you"
             echo "want to appropriate?"
             echo -n "y/n :"
-            read decision
+            if [ $force -eq 1 ]
+            then
+                decision="y"
+                echo "forced"
+            else
+                read decision
+            fi
             if [ $decision == "y" ]; then
                 echo "try to modify owner"
                 sudo chown $user_name $homeFile
