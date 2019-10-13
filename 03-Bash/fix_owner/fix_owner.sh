@@ -64,6 +64,7 @@ do
             fi
             if [ $decision == "y" ]; then
                 echo "try to modify owner"
+                echo "sudo chown $user_name $homeFile"
                 sudo chown $user_name $homeFile
                 if [ $(stat -c '%U' $homeFile) = "$user_name" ];then
                     echo "successfully assigned"
